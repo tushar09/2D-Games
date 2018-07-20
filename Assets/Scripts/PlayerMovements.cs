@@ -5,17 +5,20 @@ using UnityEngine;
 public class PlayerMovements : MonoBehaviour {
 
 	public float moveSpeed = 10f;
-	public float jumpSpeed = 10f;
+	public float jumpSpeed = 9f;
 	public float tempSpeed;
 	public float accSpeed = 15f;
 
 	public Rigidbody2D rb;
+
+	public static bool canJump;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
 		tempSpeed = moveSpeed;
 		accSpeed = 15f;
+		canJump = true;
 	}
 	
 	// Update is called once per frame
@@ -52,9 +55,16 @@ public class PlayerMovements : MonoBehaviour {
 				Debug.Log ("smaller " + moveSpeed + " " + accSpeed);
 			}
 		}
-		//left stop
+		//run stop
 		if(Input.GetKeyUp(KeyCode.LeftShift)){
 			moveSpeed = tempSpeed;
 		}
+
+
+		//jump
+		if(Input.GetKey(KeyCode.Space) && canJump){
+			rb.velocity = new Vector2 (rb.velocity.x, jumpSpeed);
+		}
+
 	}
 }
