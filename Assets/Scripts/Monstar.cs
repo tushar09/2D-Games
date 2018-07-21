@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class Monstar : MonoBehaviour {
 
+	public PlayerMovements pm;
+
+	public GameObject spwanLoc;
+
+	void Start(){
+		pm = GameObject.Find ("Player").GetComponent<PlayerMovements> ();
+	}
+
 	void OnTriggerEnter2D(){
-		Debug.Log ("enters");
+		pm.deaths++;
+		Debug.Log (pm.deaths);
+		pm.rb.position = spwanLoc.transform.position;
+
 	}
 
 	void OnTriggerExit2D(){

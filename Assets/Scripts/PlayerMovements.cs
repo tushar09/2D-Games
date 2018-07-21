@@ -13,6 +13,8 @@ public class PlayerMovements : MonoBehaviour {
 
 	public static bool canJump;
 
+	public int deaths;
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
